@@ -1,0 +1,19 @@
+{
+  "name": "cache-busting-assets",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexnewmannn/cache-bust.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexnewmannn/cache-bust/issues"
+  },
+  "homepage": "https://github.com/alexnewmannn/cache-bust#readme"
+}
