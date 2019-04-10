@@ -1,8 +1,9 @@
 const crypto = require('crypto');
 const fs = require('fs');
+const process = require('process');
 
-const generateHash = (sourceFile) => {
-  const file = fs.readFileSync((`.${sourceFile}`), 'utf8');
+const generateHash = (dir, sourceFile) => {
+  const file = fs.readFileSync((`${dir}${sourceFile}`), 'utf8');
   const hash = crypto
     .createHash('sha1')
     .update(file, 'utf8')
@@ -12,14 +13,20 @@ const generateHash = (sourceFile) => {
   const splitFile = removeExtension[0].split('/');
   const fileName = splitFile.pop();
   const destination = sourceFile.replace(fileName, `${fileName}-${hash}`);
+  console.log(`${dir}${sourceFile}`, `${dir}${destination}`);
+  fs.copyFile(`${dir}${sourceFile}`, `${dir}${destination}`, (copyErr) => {
+    if (copyErr) {
+      throw copyErr;
+    }
+  });
 
   return destination;
 };
 
-const createHashFile = (sources) => {
+const createHashFile = (dir, sources) => {
   const hashes = sources.map(file => (
     {
-      [file]: generateHash(file),
+      [file]: generateHash(dir, file),
     }
   ));
 
